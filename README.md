@@ -33,6 +33,7 @@ EssentialsBank is a plugin for PaperMC (and its forks like Purpur) designed to i
 | `/bank balance` | Shows the current balance of the server bank. | `essentialsbank.use` | True |
 | `/bank deposit <amount>` | Deposits money from your balance to the central bank. | `essentialsbank.use` | True |
 | `/bank withdraw <amount>` | Withdraws money from the bank to your balance. | `essentialsbank.admin` | OP |
+| `/bank set <amount>` | Sets the exact balance of the central bank. | `essentialsbank.admin` | OP |
 
 *Supported aliases:* `/banco`, `/serverbank`
 
@@ -42,6 +43,9 @@ EssentialsBank is a plugin for PaperMC (and its forks like Purpur) designed to i
 ```yaml
 # The language is automatically detected from your EssentialsX config.yml (locale setting).
 # Supported by default: 'en' (English), 'es' (Spanish).
+
+# Enable the bank plugin? (Set to true AFTER configuring the bank-account-name)
+enabled: false
 
 # Name of the server bank account (internally created as an NPC in Essentials)
 bank-account-name: 'ServerBank'

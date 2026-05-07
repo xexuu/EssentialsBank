@@ -3,5 +3,8 @@
 # The language is automatically detected from your EssentialsX config.yml (locale setting).
 # Supported by default: 'en' (English), 'es' (Spanish).
 
+# Enable the bank plugin? (Set to true AFTER configuring the bank-account-name)
+enabled: false
+
 # Name of the server bank account (internally created as an NPC in Essentials)
 bank-account-name: 'ServerBank'

@@ -23,6 +23,13 @@ public class EssentialsBank extends JavaPlugin {
         saveDefaultConfig();
         FileConfiguration config = getConfig();
         
+        boolean enabled = config.getBoolean("enabled", false);
+        if (!enabled) {
+            getLogger().warning("EssentialsBank is disabled in config.yml! Please configure 'bank-account-name' and set 'enabled: true'.");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
         bankAccountName = config.getString("bank-account-name", "ServerBank");
         
         // Detect locale from EssentialsX natively
@@ -71,19 +78,24 @@ public class EssentialsBank extends JavaPlugin {
     }
 
     private void ensureBankAccountExists() {
+        boolean created = false;
         try {
             if (!com.earth2me.essentials.api.Economy.isNPC(bankAccountName)) {
-                boolean created = com.earth2me.essentials.api.Economy.createNPC(bankAccountName);
-                if (created) {
-                    getLogger().info("Created new NPC Bank account: " + bankAccountName);
-                }
+                created = com.earth2me.essentials.api.Economy.createNPC(bankAccountName);
             }
         } catch (Exception e) {
             // UserDoesNotExistException in Essentials implies we should create it
-            boolean created = com.earth2me.essentials.api.Economy.createNPC(bankAccountName);
-            if (created) {
-                getLogger().info("Created new NPC Bank account: " + bankAccountName);
+            created = com.earth2me.essentials.api.Economy.createNPC(bankAccountName);
+        }
+
+        if (created) {
+            getLogger().info("Created new NPC Bank account: " + bankAccountName);
+            // Reset balance to 0 to bypass EssentialsX new player starting balance
+            double startingBalance = vaultEconomy.getBalance(bankAccountName);
+            if (startingBalance > 0) {
+                vaultEconomy.withdrawPlayer(bankAccountName, startingBalance);
             }
+            getLogger().info("Bank balance initialized to 0.");
         }
     }
 

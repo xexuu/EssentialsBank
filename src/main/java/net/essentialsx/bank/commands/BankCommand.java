@@ -113,6 +113,32 @@ public class BankCommand implements CommandExecutor {
                 }
                 break;
 
+            case "set":
+            case "establecer":
+                if (!sender.hasPermission("essentialsbank.admin")) {
+                    sender.sendMessage(i18n.tl("noPermission"));
+                    return true;
+                }
+                if (args.length < 2) {
+                    sender.sendMessage(i18n.tl("invalidAmount"));
+                    return true;
+                }
+                double setAmount;
+                try {
+                    setAmount = Double.parseDouble(args[1]);
+                    if (setAmount < 0) throw new NumberFormatException();
+                } catch (NumberFormatException e) {
+                    sender.sendMessage(i18n.tl("invalidAmount"));
+                    return true;
+                }
+
+                double currentBalance = vault.getBalance(bankName);
+                vault.withdrawPlayer(bankName, currentBalance);
+                vault.depositPlayer(bankName, setAmount);
+
+                sender.sendMessage(i18n.tl("bankSetSuccess", vault.format(setAmount)));
+                break;
+
             default:
                 sender.sendMessage(i18n.tl("bankHelp", label));
                 break;
