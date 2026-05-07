@@ -6,56 +6,56 @@
   <img src="https://img.shields.io/badge/Vault-Compatible-green.svg?style=flat-square" alt="Vault" />
 </p>
 
-EssentialsBank es un plugin para PaperMC (y sus forks como Purpur) diseñado para integrarse de manera **nativa** en el ecosistema económico de **EssentialsX** y **Vault**. Permite a los administradores del servidor disponer de una cuenta de "Banco Central" sin tener que vincularla a un jugador real o cuenta premium.
+EssentialsBank is a plugin for PaperMC (and its forks like Purpur) designed to integrate **natively** into the **EssentialsX** and **Vault** economy ecosystem. It allows server administrators to have a "Central Bank" account without having to link it to a real player or premium account.
 
-## 🌟 Características
-- **Integración Nativa con EssentialsX:** Genera automáticamente una cuenta `NPC` oculta en EssentialsX que actúa como el banco del servidor.
-- **Soporte Vault:** Totalmente compatible con la API de Vault. Cualquier otro plugin (ej. de tiendas, subastas, misiones) puede depositar o retirar dinero del banco central sin problemas.
-- **Sistema de Traducciones (I18n):** Utiliza un sistema `.properties` idéntico al de los módulos oficiales de EssentialsX. Incluye idiomas **Español (es)** e **Inglés (en)** por defecto.
-- **Sin cuentas fantasma:** El banco es independiente y no ocupa un slot en la whitelist ni interfiere con los UUIDs reales de los jugadores.
+## 🌟 Features
+- **Native EssentialsX Integration:** Automatically generates a hidden `NPC` account in EssentialsX that acts as the server bank.
+- **Vault Support:** Fully compatible with the Vault API. Any other plugin (e.g., shops, auctions, quests) can deposit or withdraw money from the central bank seamlessly.
+- **Translation System (I18n):** Uses a `.properties` system identical to official EssentialsX modules. Includes **English (en)** and **Spanish (es)** languages by default.
+- **No Ghost Accounts:** The bank is independent and does not take up a whitelist slot or interfere with real player UUIDs.
 
-## 📦 Requisitos
-- **Software del Servidor:** PaperMC (o Purpur) 1.13+ (Testeado en la 1.20.1)
-- **Economía Base:** [EssentialsX](https://essentialsx.net/)
-- **API de Economía:** [Vault](https://github.com/MilkBowl/Vault)
+## 📦 Requirements
+- **Server Software:** PaperMC (or Purpur) 1.13+ (Tested on 1.20.1)
+- **Base Economy:** [EssentialsX](https://essentialsx.net/)
+- **Economy API:** [Vault](https://github.com/MilkBowl/Vault)
 
-## 🚀 Instalación
-1. Apaga tu servidor.
-2. Descarga o compila el archivo `EssentialsBank-1.0.0.jar` y colócalo en la carpeta `plugins/` de tu servidor.
-3. Asegúrate de tener los plugins `EssentialsX` y `Vault` instalados.
-4. Enciende tu servidor.
-5. *(Opcional)* Edita el archivo `config.yml` generado en `plugins/EssentialsBank/` para cambiar el idioma o el nombre interno de la cuenta bancaria.
+## 🚀 Installation
+1. Stop your server.
+2. Download or compile the `EssentialsBank-1.0.0.jar` file and place it in your server's `plugins/` folder.
+3. Make sure you have the `EssentialsX` and `Vault` plugins installed.
+4. Start your server.
+5. *(Optional)* Edit the `config.yml` file generated in `plugins/EssentialsBank/` to change the language or the internal name of the bank account.
 
-## 💻 Comandos y Permisos
+## 💻 Commands and Permissions
 
-| Comando | Descripción | Permiso | Por defecto |
+| Command | Description | Permission | Default |
 |---|---|---|---|
-| `/bank balance` | Muestra el saldo actual del banco del servidor. | `essentialsbank.use` | True |
-| `/bank deposit <cantidad>` | Deposita dinero de tu bolsillo al banco central. | `essentialsbank.use` | True |
-| `/bank withdraw <cantidad>` | Retira dinero de las arcas del banco a tu bolsillo. | `essentialsbank.admin` | OP |
+| `/bank balance` | Shows the current balance of the server bank. | `essentialsbank.use` | True |
+| `/bank deposit <amount>` | Deposits money from your balance to the central bank. | `essentialsbank.use` | True |
+| `/bank withdraw <amount>` | Withdraws money from the bank to your balance. | `essentialsbank.admin` | OP |
 
-*Alias soportados:* `/banco`, `/serverbank`
+*Supported aliases:* `/banco`, `/serverbank`
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
 `config.yml`
 ```yaml
-# Configura el idioma. Soporte nativo para: 'es' (español), 'en' (inglés).
-locale: 'es'
+# Configure the language. Native support for: 'en' (English), 'es' (Spanish).
+locale: 'en'
 
-# Nombre de la cuenta bancaria del servidor (creada internamente como NPC en Essentials)
+# Name of the server bank account (internally created as an NPC in Essentials)
 bank-account-name: 'ServerBank'
 ```
 
-## 🛠️ Compilar desde el código fuente
-Este proyecto utiliza Gradle. Para compilarlo tú mismo:
+## 🛠️ Compiling from source
+This project uses Gradle. To compile it yourself:
 ```bash
 git clone https://github.com/xexuu/EssentialsBank.git
 cd EssentialsBank
 gradle wrapper
 ./gradlew build
 ```
-El archivo `.jar` compilado aparecerá en el directorio `build/libs/`.
+The compiled `.jar` file will appear in the `build/libs/` directory.
 
-## 📝 Licencia
-Este proyecto es de código abierto. ¡Siéntete libre de clonarlo, modificarlo y contribuir!
+## 📝 License
+This project is open-source. Feel free to clone, modify, and contribute!
