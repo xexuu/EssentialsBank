@@ -1,0 +1,7 @@
+# EssentialsBank Configuration File
+# -----------------------------------
+# Configura el idioma. Soporte nativo para: 'es' (español), 'en' (inglés).
+locale: 'es'
+
+# Nombre de la cuenta bancaria del servidor (creada internamente como NPC en Essentials)
+bank-account-name: 'ServerBank'

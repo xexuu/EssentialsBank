@@ -1,0 +1,18 @@
+name: EssentialsBank
+version: '1.0.0'
+main: net.essentialsx.bank.EssentialsBank
+api-version: '1.13'
+depend: [Essentials, Vault]
+description: Un plugin de banco centralizado que actúa de forma nativa con EssentialsX y Vault.
+commands:
+  bank:
+    description: Comandos principales del banco del servidor.
+    aliases: [banco, serverbank]
+    permission: essentialsbank.use
+permissions:
+  essentialsbank.use:
+    description: Permite usar los comandos básicos del banco.
+    default: true
+  essentialsbank.admin:
+    description: Permite administrar el banco del servidor.
+    default: op
