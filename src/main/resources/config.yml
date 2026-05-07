@@ -1,7 +1,7 @@
 # EssentialsBank Configuration File
 # -----------------------------------
-# Configure the language. Native support for: 'en' (English), 'es' (Spanish).
-locale: 'en'
+# The language is automatically detected from your EssentialsX config.yml (locale setting).
+# Supported by default: 'en' (English), 'es' (Spanish).
 
 # Name of the server bank account (internally created as an NPC in Essentials)
 bank-account-name: 'ServerBank'

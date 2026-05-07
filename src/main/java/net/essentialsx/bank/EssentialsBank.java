@@ -23,8 +23,18 @@ public class EssentialsBank extends JavaPlugin {
         saveDefaultConfig();
         FileConfiguration config = getConfig();
         
-        String locale = config.getString("locale", "es");
         bankAccountName = config.getString("bank-account-name", "ServerBank");
+        
+        // Detect locale from EssentialsX natively
+        String locale = "en"; // Fallback default
+        if (getServer().getPluginManager().getPlugin("Essentials") != null) {
+            com.earth2me.essentials.IEssentials ess = (com.earth2me.essentials.IEssentials) getServer().getPluginManager().getPlugin("Essentials");
+            String essLocale = ess.getSettings().getLocale();
+            if (essLocale != null && !essLocale.isEmpty()) {
+                locale = essLocale;
+                getLogger().info("Detected EssentialsX locale: " + locale);
+            }
+        }
         
         i18n = new BankI18n(this, locale);
 
