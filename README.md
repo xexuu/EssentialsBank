@@ -24,7 +24,7 @@ EssentialsBank is a plugin for PaperMC (and its forks like Purpur) designed to i
 2. Download or compile the `EssentialsBank-1.0.0.jar` file and place it in your server's `plugins/` folder.
 3. Make sure you have the `EssentialsX` and `Vault` plugins installed.
 4. Start your server.
-5. *(Optional)* Edit the `config.yml` file generated in `plugins/EssentialsBank/` to change the language or the internal name of the bank account.
+5. *(Optional)* Edit the `config.yml` file generated in `plugins/EssentialsBank/` to change the internal name of the bank account.
 
 ## 💻 Commands and Permissions
 
@@ -40,8 +40,8 @@ EssentialsBank is a plugin for PaperMC (and its forks like Purpur) designed to i
 
 `config.yml`
 ```yaml
-# Configure the language. Native support for: 'en' (English), 'es' (Spanish).
-locale: 'en'
+# The language is automatically detected from your EssentialsX config.yml (locale setting).
+# Supported by default: 'en' (English), 'es' (Spanish).
 
 # Name of the server bank account (internally created as an NPC in Essentials)
 bank-account-name: 'ServerBank'
