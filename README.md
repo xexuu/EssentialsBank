@@ -21,10 +21,11 @@ EssentialsBank is a plugin for PaperMC (and its forks like Purpur) designed to i
 
 ## 🚀 Installation
 1. Stop your server.
-2. Download or compile the `EssentialsBank-1.0.0.jar` file and place it in your server's `plugins/` folder.
+2. Download or compile the latest `EssentialsBank-x.x.x.jar` file and place it in your server's `plugins/` folder.
 3. Make sure you have the `EssentialsX` and `Vault` plugins installed.
 4. Start your server.
-5. *(Optional)* Edit the `config.yml` file generated in `plugins/EssentialsBank/` to change the internal name of the bank account.
+5. **(Required)** Edit the `config.yml` file generated in `plugins/EssentialsBank/` to configure the internal bank name and set `enabled: true`.
+6. Run `/bank reload` or restart your server to activate the plugin.
 
 ## 💻 Commands and Permissions
 
