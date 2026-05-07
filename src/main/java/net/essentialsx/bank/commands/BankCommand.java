@@ -21,6 +21,16 @@ public class BankCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         BankI18n i18n = plugin.getI18n();
+
+        if (plugin.isSetupMode()) {
+            if (sender.hasPermission("essentialsbank.admin")) {
+                sender.sendMessage(i18n.tl("setupModeAdminWarning"));
+            } else {
+                sender.sendMessage(i18n.tl("setupModePlayerWarning"));
+            }
+            return true;
+        }
+
         Economy vault = plugin.getVaultEconomy();
         String bankName = plugin.getBankAccountName();
 

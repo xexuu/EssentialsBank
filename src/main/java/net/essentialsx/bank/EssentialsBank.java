@@ -15,6 +15,7 @@ public class EssentialsBank extends JavaPlugin {
     private BankI18n i18n;
     private Economy vaultEconomy;
     private String bankAccountName;
+    private boolean isSetupMode = false;
 
     @Override
     public void onEnable() {
@@ -25,9 +26,8 @@ public class EssentialsBank extends JavaPlugin {
         
         boolean enabled = config.getBoolean("enabled", false);
         if (!enabled) {
+            isSetupMode = true;
             getLogger().warning("EssentialsBank is disabled in config.yml! Please configure 'bank-account-name' and set 'enabled: true'.");
-            getServer().getPluginManager().disablePlugin(this);
-            return;
         }
 
         bankAccountName = config.getString("bank-account-name", "ServerBank");
@@ -39,25 +39,34 @@ public class EssentialsBank extends JavaPlugin {
             String essLocale = ess.getSettings().getLocale();
             if (essLocale != null && !essLocale.isEmpty()) {
                 locale = essLocale;
-                getLogger().info("Detected EssentialsX locale: " + locale);
+                if (!isSetupMode) getLogger().info("Detected EssentialsX locale: " + locale);
             }
         }
         
         i18n = new BankI18n(this, locale);
 
-        if (!setupEconomy()) {
+        if (!isSetupMode && !setupEconomy()) {
             getLogger().severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
 
-        // Initialize bank NPC account if it doesn't exist
-        ensureBankAccountExists();
+        if (!isSetupMode) {
+            // Initialize bank NPC account if it doesn't exist
+            ensureBankAccountExists();
+        }
 
         // Register command
         getCommand("bank").setExecutor(new BankCommand(this));
 
-        getLogger().info("EssentialsBank has been enabled successfully.");
+        // Register event listener for OP notification
+        getServer().getPluginManager().registerEvents(new net.essentialsx.bank.listeners.PlayerJoinListener(this), this);
+
+        if (isSetupMode) {
+            getLogger().info("EssentialsBank is running in Setup Mode.");
+        } else {
+            getLogger().info("EssentialsBank has been enabled successfully.");
+        }
     }
 
     @Override
@@ -113,5 +122,9 @@ public class EssentialsBank extends JavaPlugin {
 
     public String getBankAccountName() {
         return bankAccountName;
+    }
+
+    public boolean isSetupMode() {
+        return isSetupMode;
     }
 }
