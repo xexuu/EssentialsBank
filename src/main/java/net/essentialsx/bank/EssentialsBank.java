@@ -59,8 +59,9 @@ public class EssentialsBank extends JavaPlugin {
         // Register command
         getCommand("bank").setExecutor(new BankCommand(this));
 
-        // Register event listener for OP notification
+        // Register event listener for OP notification and reload interception
         getServer().getPluginManager().registerEvents(new net.essentialsx.bank.listeners.PlayerJoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new net.essentialsx.bank.listeners.ReloadInterceptorListener(this), this);
 
         if (isSetupMode) {
             getLogger().info("EssentialsBank is running in Setup Mode.");
@@ -72,6 +73,34 @@ public class EssentialsBank extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().info("EssentialsBank has been disabled.");
+    }
+
+    public void reloadPlugin() {
+        reloadConfig();
+        FileConfiguration config = getConfig();
+        
+        boolean enabled = config.getBoolean("enabled", false);
+        this.isSetupMode = !enabled;
+
+        bankAccountName = config.getString("bank-account-name", "ServerBank");
+
+        String locale = "en";
+        if (getServer().getPluginManager().getPlugin("Essentials") != null) {
+            com.earth2me.essentials.IEssentials ess = (com.earth2me.essentials.IEssentials) getServer().getPluginManager().getPlugin("Essentials");
+            String essLocale = ess.getSettings().getLocale();
+            if (essLocale != null && !essLocale.isEmpty()) {
+                locale = essLocale;
+            }
+        }
+        
+        i18n = new BankI18n(this, locale);
+
+        if (!isSetupMode) {
+            ensureBankAccountExists();
+            getLogger().info("EssentialsBank configuration and locale reloaded successfully.");
+        } else {
+            getLogger().warning("EssentialsBank is running in Setup Mode.");
+        }
     }
 
     private boolean setupEconomy() {

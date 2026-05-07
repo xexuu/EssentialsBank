@@ -34,8 +34,11 @@ EssentialsBank is a plugin for PaperMC (and its forks like Purpur) designed to i
 | `/bank deposit <amount>` | Deposits money from your balance to the central bank. | `essentialsbank.use` | True |
 | `/bank withdraw <amount>` | Withdraws money from the bank to your balance. | `essentialsbank.admin` | OP |
 | `/bank set <amount>` | Sets the exact balance of the central bank. | `essentialsbank.admin` | OP |
+| `/bank reload` | Reloads the configuration and language file. | `essentialsbank.admin` | OP |
 
 *Supported aliases:* `/banco`, `/serverbank`
+
+💡 *Pro Tip:* EssentialsBank automatically hooks into EssentialsX! Running `/essentials reload` will automatically reload the bank plugin too.
 
 ## ⚙️ Configuration
 

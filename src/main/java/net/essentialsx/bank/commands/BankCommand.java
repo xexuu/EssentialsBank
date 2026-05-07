@@ -149,6 +149,16 @@ public class BankCommand implements CommandExecutor {
                 sender.sendMessage(i18n.tl("bankSetSuccess", vault.format(setAmount)));
                 break;
 
+            case "reload":
+            case "recargar":
+                if (!sender.hasPermission("essentialsbank.admin")) {
+                    sender.sendMessage(i18n.tl("noPermission"));
+                    return true;
+                }
+                plugin.reloadPlugin();
+                sender.sendMessage(i18n.tl("bankReloadSuccess"));
+                break;
+
             default:
                 sender.sendMessage(i18n.tl("bankHelp", label));
                 break;
