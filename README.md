@@ -13,6 +13,7 @@ EssentialsBank is a plugin for PaperMC (and its forks like Purpur) designed to i
 - **Vault Support:** Fully compatible with the Vault API. Any other plugin (e.g., shops, auctions, quests) can deposit or withdraw money from the central bank seamlessly.
 - **Translation System (I18n):** Uses a `.properties` system identical to official EssentialsX modules. Includes **English (en)** and **Spanish (es)** languages by default.
 - **No Ghost Accounts:** The bank is independent and does not take up a whitelist slot or interfere with real player UUIDs.
+- **Anti-Spoofing Shield:** Connection shield and fail-fast validation prevent malicious players from joining with the bank's name.
 
 ## 📦 Requirements
 - **Server Software:** PaperMC (or Purpur) 1.13+ (Tested on 1.20.1)
@@ -24,7 +25,7 @@ EssentialsBank is a plugin for PaperMC (and its forks like Purpur) designed to i
 2. Download or compile the latest `EssentialsBank-x.x.x.jar` file and place it in your server's `plugins/` folder.
 3. Make sure you have the `EssentialsX` and `Vault` plugins installed.
 4. Start your server.
-5. **(Required)** Edit the `config.yml` file generated in `plugins/EssentialsBank/` to configure the internal bank name and set `enabled: true`.
+5. **(Required)** Edit the `config.yml` file generated in `plugins/EssentialsBank/` to configure the internal bank name and set `enabled: true`. Ensure you use a special character in the name (e.g., `*ServerBank*`) to prevent spoofing.
 6. Run `/bank reload` or restart your server to activate the plugin.
 
 ## 💻 Commands and Permissions
@@ -52,7 +53,8 @@ EssentialsBank is a plugin for PaperMC (and its forks like Purpur) designed to i
 enabled: false
 
 # Name of the server bank account (internally created as an NPC in Essentials)
-bank-account-name: 'ServerBank'
+# IMPORTANT: To prevent player spoofing, use at least one special character (e.g., *, -, $ or space).
+bank-account-name: '*ServerBank*'
 ```
 
 ## 🛠️ Compiling from source

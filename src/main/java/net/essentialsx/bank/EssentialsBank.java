@@ -30,8 +30,19 @@ public class EssentialsBank extends JavaPlugin {
             getLogger().warning("EssentialsBank is disabled in config.yml! Please configure 'bank-account-name' and set 'enabled: true'.");
         }
 
-        bankAccountName = config.getString("bank-account-name", "ServerBank");
+        bankAccountName = config.getString("bank-account-name", "*ServerBank*");
         
+        if (bankAccountName.matches("^[a-zA-Z0-9_]{1,16}$")) {
+            isSetupMode = true;
+            getLogger().severe("==========================================");
+            getLogger().severe("SECURITY ALERT: VULNERABLE BANK NAME!");
+            getLogger().severe("The name '" + bankAccountName + "' can be used by a real player.");
+            getLogger().severe("To prevent spoofing, the bank name MUST contain special characters.");
+            getLogger().severe("Example: *ServerBank*, Bank-Account, or $ServerBank$");
+            getLogger().severe("EssentialsBank is now in SETUP MODE to protect your server.");
+            getLogger().severe("==========================================");
+        }
+
         // Detect locale from EssentialsX natively
         String locale = "en"; // Fallback default
         if (getServer().getPluginManager().getPlugin("Essentials") != null) {
@@ -59,9 +70,10 @@ public class EssentialsBank extends JavaPlugin {
         // Register command
         getCommand("bank").setExecutor(new BankCommand(this));
 
-        // Register event listener for OP notification and reload interception
+        // Register event listeners
         getServer().getPluginManager().registerEvents(new net.essentialsx.bank.listeners.PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new net.essentialsx.bank.listeners.ReloadInterceptorListener(this), this);
+        getServer().getPluginManager().registerEvents(new net.essentialsx.bank.listeners.PlayerLoginListener(this), this);
 
         if (isSetupMode) {
             getLogger().info("EssentialsBank is running in Setup Mode.");
@@ -82,7 +94,18 @@ public class EssentialsBank extends JavaPlugin {
         boolean enabled = config.getBoolean("enabled", false);
         this.isSetupMode = !enabled;
 
-        bankAccountName = config.getString("bank-account-name", "ServerBank");
+        bankAccountName = config.getString("bank-account-name", "*ServerBank*");
+
+        if (bankAccountName.matches("^[a-zA-Z0-9_]{1,16}$")) {
+            this.isSetupMode = true;
+            getLogger().severe("==========================================");
+            getLogger().severe("SECURITY ALERT: VULNERABLE BANK NAME!");
+            getLogger().severe("The name '" + bankAccountName + "' can be used by a real player.");
+            getLogger().severe("To prevent spoofing, the bank name MUST contain special characters.");
+            getLogger().severe("Example: *ServerBank*, Bank-Account, or $ServerBank$");
+            getLogger().severe("EssentialsBank is now in SETUP MODE to protect your server.");
+            getLogger().severe("==========================================");
+        }
 
         String locale = "en";
         if (getServer().getPluginManager().getPlugin("Essentials") != null) {

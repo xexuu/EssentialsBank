@@ -7,4 +7,5 @@
 enabled: false
 
 # Name of the server bank account (internally created as an NPC in Essentials)
-bank-account-name: 'ServerBank'
+# IMPORTANT: To prevent player spoofing, use at least one special character (e.g., *, -, $ or space).
+bank-account-name: '*ServerBank*'
