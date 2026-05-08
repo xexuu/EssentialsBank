@@ -17,7 +17,9 @@ public class PlayerLoginListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerPreLogin(AsyncPlayerPreLoginEvent event) {
         // Anti-Spoofing Connection Shield
-        if (event.getName().equalsIgnoreCase(plugin.getBankAccountName())) {
+        String playerName = event.getName();
+        if (playerName.equalsIgnoreCase(plugin.getBankAccountName()) || 
+            playerName.equalsIgnoreCase(plugin.getSanitizedBankName())) {
             event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, plugin.getI18n().tl("bankNameReservedKicked"));
         }
     }

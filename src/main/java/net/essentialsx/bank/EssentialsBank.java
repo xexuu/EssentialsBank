@@ -186,4 +186,10 @@ public class EssentialsBank extends JavaPlugin {
     public boolean isSetupMode() {
         return isSetupMode;
     }
+
+    public String getSanitizedBankName() {
+        if (bankAccountName == null) return null;
+        // EssentialsX's StringUtil.safeString replaces anything not a-z0-9 with _
+        return bankAccountName.toLowerCase(java.util.Locale.ENGLISH).replaceAll("[^a-z0-9]", "_");
+    }
 }
