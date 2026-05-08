@@ -119,6 +119,13 @@ public class EssentialsBank extends JavaPlugin {
         i18n = new BankI18n(this, locale);
 
         if (!isSetupMode) {
+            if (vaultEconomy == null) {
+                if (!setupEconomy()) {
+                    getLogger().severe("Cannot enable bank: Vault dependency or Economy provider not found!");
+                    this.isSetupMode = true; // Revert to setup mode
+                    return;
+                }
+            }
             ensureBankAccountExists();
             getLogger().info("EssentialsBank configuration and locale reloaded successfully.");
         } else {
