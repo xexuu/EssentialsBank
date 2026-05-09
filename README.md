@@ -1,9 +1,10 @@
 # EssentialsBank
 
 <p align="center">
-  <img src="https://img.shields.io/badge/PaperMC-1.20.x-blue.svg?style=flat-square" alt="PaperMC" />
-  <img src="https://img.shields.io/badge/EssentialsX-Compatible-red.svg?style=flat-square" alt="EssentialsX" />
+  <img src="https://img.shields.io/badge/PaperMC-26.1.2-blue.svg?style=flat-square" alt="PaperMC" />
+  <img src="https://img.shields.io/badge/EssentialsX-dev_Compatible-red.svg?style=flat-square" alt="EssentialsX" />
   <img src="https://img.shields.io/badge/Vault-Compatible-green.svg?style=flat-square" alt="Vault" />
+  <img src="https://img.shields.io/badge/Java-25-orange.svg?style=flat-square" alt="Java" />
 </p>
 
 EssentialsBank is a plugin for PaperMC (and its forks like Purpur) designed to integrate **natively** into the **EssentialsX** and **Vault** economy ecosystem. It allows server administrators to have a "Central Bank" account without having to link it to a real player or premium account.
@@ -16,15 +17,16 @@ EssentialsBank is a plugin for PaperMC (and its forks like Purpur) designed to i
 - **Anti-Spoofing Shield:** Connection shield and fail-fast validation prevent malicious players from joining with the bank's name.
 
 ## 📦 Requirements
-- **Server Software:** PaperMC (or Purpur) 1.13+ (Tested on 1.20.1)
-- **Base Economy:** [EssentialsX](https://essentialsx.net/)
+- **Server Software:** PaperMC (or Purpur) 1.13+ (Fully tested on **26.1.2**)
+- **Java Version:** **Java 25** or higher (required for latest PaperMC versions)
+- **Base Economy:** [EssentialsX](https://essentialsx.net/) (Supports latest **dev** builds)
 - **Economy API:** [Vault](https://github.com/MilkBowl/Vault)
 
 ## 🚀 Installation
 1. Stop your server.
 2. Download or compile the latest `EssentialsBank-x.x.x.jar` file and place it in your server's `plugins/` folder.
 3. Make sure you have the `EssentialsX` and `Vault` plugins installed.
-4. Start your server.
+4. Start your server with **Java 25**.
 5. **(Required)** Edit the `config.yml` file generated in `plugins/EssentialsBank/` to configure the internal bank name and set `enabled: true`. Ensure you use a special character in the name (e.g., `*ServerBank*`) to prevent spoofing.
 6. Run `/bank reload` or restart your server to activate the plugin.
 
